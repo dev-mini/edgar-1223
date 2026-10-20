@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Server } from './server';
 import { AppRoutes } from './routes';
 
@@ -7,7 +8,7 @@ import { AppRoutes } from './routes';
 
 function main() {
     const server = new Server({
-        port: 4000,
+        port: Number(process.env.PORT) || 4000,
         routes: AppRoutes.routes,
     });
 
