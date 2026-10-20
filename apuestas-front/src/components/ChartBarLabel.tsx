@@ -84,7 +84,7 @@ export function ChartBarLabel() {
                     <TrendingUp className="h-4 w-4" />
                 </div>
                 <div className="leading-none text-muted-foreground">
-                    Showing total visitors for the last 6 months
+                    Showing today's races results
                 </div>
             </CardFooter>
         </Card>
