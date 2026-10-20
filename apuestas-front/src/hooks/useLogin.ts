@@ -59,7 +59,7 @@ export const useLogin = () => {
 
             setLocalData(token, email, fullName);
 
-            navigate('/', { replace: true });
+            navigate('/dashboard', { replace: true });
         } catch (error) {
             console.log(error);
             handleErrorResponse(error);
