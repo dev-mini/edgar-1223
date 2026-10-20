@@ -24,8 +24,14 @@ export const logOut = () => {
     localStorage.clear();
 };
 
-export function setLocalData(token: string, email: string, fullName: string) {
+export function setLocalData(
+    token: string,
+    email: string,
+    fullName: string,
+    credit: string,
+) {
     localStorage.setItem('snail-tkn', token);
     localStorage.setItem('user-email', email);
     localStorage.setItem('user-fullName', fullName);
+    localStorage.setItem('user-credit', credit);
 }

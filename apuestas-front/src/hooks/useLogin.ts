@@ -48,7 +48,7 @@ export const useLogin = () => {
 
             const {
                 token,
-                user: { fullName, email },
+                user: { fullName, email, credit },
             } = await loginReq(loginData);
 
             toast.add({
@@ -57,7 +57,7 @@ export const useLogin = () => {
                 priority: 'high',
             });
 
-            setLocalData(token, email, fullName);
+            setLocalData(token, email, fullName, credit.toString());
 
             navigate('/dashboard', { replace: true });
         } catch (error) {
