@@ -1,3 +1,9 @@
+interface User {
+    id: string;
+    email: string;
+    fullName: string;
+}
+
 export interface iRegisterData {
     fullName: string;
     email: string;
@@ -6,6 +12,7 @@ export interface iRegisterData {
 }
 
 export interface iAuthRegisterResponse {
+    statusCode: number;
     id: string;
     fullName: string;
     email: string;
@@ -17,8 +24,7 @@ export interface iLoginData {
 }
 
 export interface iAuthLoginResponse {
-    id: string;
-    fullName: string;
-    email: string;
+    statusCode: number;
+    user: User;
     token: string;
 }
