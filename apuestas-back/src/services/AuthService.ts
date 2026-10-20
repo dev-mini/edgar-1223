@@ -26,6 +26,7 @@ export class AuthService {
         const newUser = {
             id: crypto.randomUUID(),
             fullName,
+            credit: 0,
             email,
         };
 
