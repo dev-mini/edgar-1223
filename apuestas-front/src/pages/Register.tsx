@@ -13,7 +13,14 @@ import { useNavigate } from 'react-router';
 
 const Register = () => {
     const navigate = useNavigate();
-    const { values, errors, handleChange, isEnableSubmit } = useRegister();
+    const {
+        values,
+        errors,
+        handleChange,
+        isEnableSubmit,
+        handleSubmitRegisterData,
+        loading,
+    } = useRegister();
 
     return (
         <Card className="flex flex-col min-w-full max-w-lg bg-primary-foreground">
@@ -37,6 +44,7 @@ const Register = () => {
                         name="fullName"
                         placeholder="John Doe Doe"
                         className="border rounded-md border-foreground"
+                        disabled={loading}
                     />
                     {!!errors?.fullName && (
                         <span className="text-sm text-red-500 ml-1 my-1">
@@ -57,6 +65,7 @@ const Register = () => {
                         type="email"
                         placeholder="m@example.com"
                         className="border rounded-md border-foreground"
+                        disabled={loading}
                     />
                     {!!errors?.email && (
                         <span className="text-sm text-red-500 ml-1 my-1">
@@ -79,6 +88,7 @@ const Register = () => {
                         type="password"
                         placeholder="367-faeu854H"
                         className="border rounded-md border-foreground"
+                        disabled={loading}
                     />
                     {!!errors?.password && (
                         <span className="text-sm text-red-500 ml-1 my-1">
@@ -101,6 +111,7 @@ const Register = () => {
                         type="password"
                         placeholder="367-faeu854H"
                         className="border rounded-md border-foreground"
+                        disabled={loading}
                     />
                     {!!errors?.confirmPassword && (
                         <span className="text-sm text-red-500 ml-1 my-1">
@@ -113,13 +124,15 @@ const Register = () => {
             <CardFooter className="flex w-full gap-2 justify-center">
                 <Button
                     className={'flex cursor-pointer flex-1/2'}
-                    disabled={!isEnableSubmit}
+                    disabled={!isEnableSubmit || loading}
+                    onClick={handleSubmitRegisterData}
                 >
                     Register
                 </Button>
                 <Button
                     onClick={() => navigate('/login')}
                     className={'flex cursor-pointer flex-1/2'}
+                    disabled={loading}
                 >
                     Cancel
                 </Button>
