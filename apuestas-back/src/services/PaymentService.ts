@@ -80,6 +80,17 @@ export class PaymentService {
             payer_email: payerEmail,
         };
 
+        const userIndex = usersData.findIndex((u) => u.id === user?.id);
+
+        const userInfo = usersData[userIndex];
+
+        const updateUser: User = {
+            ...userInfo,
+            credit: userInfo.credit + amount,
+        };
+
+        usersData[userIndex] = updateUser;
+
         const successResponse: PaymentBodyResponse = {
             statusCode: 201,
             payment: newPayment,
