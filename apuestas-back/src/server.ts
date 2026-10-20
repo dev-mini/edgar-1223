@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import { ServerOptions } from './types/ServerTypes';
+import { corsMiddleware } from './middlewares/cors.middleware';
 
 export class Server {
     public readonly app = express();
@@ -16,6 +17,8 @@ export class Server {
         this.app.disable('x-powered-by');
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
+
+        this.app.use(corsMiddleware());
 
         this.app.use(this.routes);
 
