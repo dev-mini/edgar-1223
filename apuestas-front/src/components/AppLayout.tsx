@@ -10,7 +10,7 @@ export const AppLayout = () => {
                 className={'bg-primary text-primary-foreground ml-1 mt-14'}
             />
             <div className="w-full bg-primary h-12 absolute" />
-            <div className="flex px-6 py-18">
+            <div className="flex px-6 py-24">
                 <Outlet />
             </div>
         </SidebarProvider>
