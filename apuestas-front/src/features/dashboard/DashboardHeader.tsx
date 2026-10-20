@@ -1,18 +1,18 @@
-import { Button } from '@/components/ui/button';
-import { PlusIcon } from 'lucide-react';
-
 const DashboardHeader = () => {
+    const credit = localStorage.getItem('user-credit');
+
     return (
-        <div className="flex flex-col gap-4 w-full border-b-secondary-foreground border-b-2 pb-4">
+        <div className="flex flex-col gap-2 w-full border-b-secondary-foreground border-b-2 pb-4">
             <h1 className="font-bold text-3xl">Dashboard</h1>
-            <div className="flex flex-1 justify-between items-center">
-                <h2 className="font-semibold text-lg text-primary">
-                    Your credit: $0
+            <div className="flex flex-col">
+                <h2 className="text-lg text-muted-foreground">
+                    Welcome to your racing dashboard! Explore today's snail
+                    races, track upcoming events, and review your betting
+                    performance.
                 </h2>
-                <Button className={'cursor-pointer flex gap-2'}>
-                    <PlusIcon />
-                    Buy credits
-                </Button>
+                <span className="font-semibold text-lg text-primary mt-4">
+                    Your credit: ${credit}
+                </span>
             </div>
         </div>
     );
