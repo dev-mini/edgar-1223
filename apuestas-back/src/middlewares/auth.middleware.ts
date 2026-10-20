@@ -27,15 +27,18 @@ export class AuthMiddleware {
         const token = authorization.split(' ').at(1) || '';
 
         try {
-            const payload = await JwtAdapter.validateToken<{ id: string }>(
-                token,
-            );
+            const payload = await JwtAdapter.validateToken<{
+                id: string;
+                email: string;
+            }>(token);
 
             if (!payload) {
                 const error = CustomError.unauthorized(INVALID_TOKEN);
                 res.status(401).json(handleError(error, res));
                 return;
             }
+
+            req.user = { id: payload.id, email: payload.email };
 
             next();
         } catch (error) {
