@@ -10,3 +10,14 @@ export interface RegisterBodyResponse {
     statusCode: number;
     user: Omit<User, 'password'>;
 }
+
+export interface LoginBodyReq {
+    email: string;
+    password: string;
+}
+
+export interface LoginBodyResponse {
+    statusCode: number;
+    user: Omit<User, 'password'>;
+    token: string | unknown;
+}
