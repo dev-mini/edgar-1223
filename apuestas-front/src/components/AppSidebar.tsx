@@ -13,6 +13,7 @@ import {
     Building,
     ChartColumnStacked,
     ChevronDown,
+    DollarSign,
     LogOutIcon,
     User2,
 } from 'lucide-react';
@@ -61,6 +62,15 @@ export function AppSidebar() {
                         >
                             <ChartColumnStacked />
                             <span>Dashboard</span>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton
+                            render={<Link to={'/payments'} />}
+                            isActive={pathname === '/payments'}
+                        >
+                            <DollarSign />
+                            <span>SnailPay</span>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
