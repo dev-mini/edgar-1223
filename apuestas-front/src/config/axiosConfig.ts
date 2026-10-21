@@ -11,6 +11,6 @@ export const axiosClient = axios.create({
 
 export async function getToken() {
     const token = localStorage.getItem('snail-tkn') || '';
-    axiosClient.defaults.headers.common = { Authorization: `bearer ${token}` };
+    axiosClient.defaults.headers.common = { Authorization: `Bearer ${token}` };
     return token;
 }
