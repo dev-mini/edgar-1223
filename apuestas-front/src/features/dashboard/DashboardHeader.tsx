@@ -1,6 +1,4 @@
 const DashboardHeader = () => {
-    const credit = localStorage.getItem('user-credit');
-
     return (
         <div className="flex flex-col gap-2 w-full border-b-secondary-foreground border-b-2 pb-4">
             <h1 className="font-bold text-3xl">Dashboard</h1>
@@ -10,9 +8,6 @@ const DashboardHeader = () => {
                     races, track upcoming events, and review your betting
                     performance.
                 </h2>
-                <span className="font-semibold text-lg text-primary mt-4">
-                    Your credit: ${credit}
-                </span>
             </div>
         </div>
     );

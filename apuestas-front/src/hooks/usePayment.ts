@@ -67,6 +67,7 @@ export const usePayment = () => {
                     description: 'Credits added successfully',
                     priority: 'high',
                 });
+                window.dispatchEvent(new Event('credit-updated'));
             }
 
             setValues(INITIAL_VALUES);
