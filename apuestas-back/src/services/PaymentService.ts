@@ -32,7 +32,7 @@ export class PaymentService {
             const paymentFailed = {
                 id: crypto.randomUUID(),
                 status: PaymentStatus.ERROR,
-                status_detail: `Payment failed, your card number is not valid${cardNumber}`,
+                status_detail: `Payment failed, your card number is not valid ${cardNumber}`,
                 transaction_amount: amount,
                 date_created: new Date(),
                 authorization_code: 4000,
@@ -61,7 +61,7 @@ export class PaymentService {
                 payer_email: payerEmail,
             };
 
-            throw CustomError.badRequest(
+            throw CustomError.internalServer(
                 paymentFailed.status_detail,
                 [],
                 paymentFailed,
