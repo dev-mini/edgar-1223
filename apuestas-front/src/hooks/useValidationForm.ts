@@ -3,6 +3,9 @@ import { useState } from 'react';
 const emailRegex =
     /^[a-zA-Z0-9](?!.*[._%+-]{2})[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+const onlyDigitsRegex = /^\d+$/;
+const expiryDateRegex = /^\d{2}\/\d{2}$/;
+
 const useValidationForm = (initialValues: Record<string, string>) => {
     const [values, setValues] = useState(initialValues);
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -79,6 +82,70 @@ const useValidationForm = (initialValues: Record<string, string>) => {
                     removeError(name);
                 }
                 break;
+            case 'cardNumber':
+                if (!value.trim()) {
+                    addError(name, 'Card number is required');
+                } else if (!onlyDigitsRegex.test(value)) {
+                    addError(name, 'Card number can only contain numbers');
+                } else if (value.length !== 16) {
+                    addError(name, 'Card number must have exactly 16 digits');
+                } else {
+                    removeError(name);
+                }
+                break;
+            case 'expiryDate': {
+                const [month, year] = value.split('/').map(Number);
+                const endOfMonth = new Date(
+                    2000 + year,
+                    month,
+                    0,
+                    23,
+                    59,
+                    59,
+                    999,
+                );
+                if (!value.trim()) {
+                    addError(name, 'Expiration date is required');
+                } else if (!expiryDateRegex.test(value)) {
+                    addError(name, 'Expiration date must use the YY/MM format');
+                } else if (month < 1 || month > 12) {
+                    addError(name, 'Month must be between 01 and 12');
+                } else if (endOfMonth < new Date()) {
+                    addError(name, 'Your card has expired');
+                } else if (2000 + year > new Date().getFullYear() + 20) {
+                    addError(name, 'Expiration date is too far in the future');
+                } else {
+                    removeError(name);
+                }
+                break;
+            }
+
+            case 'cvv':
+                if (!value.trim()) {
+                    addError(name, 'CVV is required');
+                } else if (!onlyDigitsRegex.test(value)) {
+                    addError(name, 'CVV can only contain numbers');
+                } else if (value.length !== 3) {
+                    addError(name, 'CVV must have exactly 3 digits');
+                } else {
+                    removeError(name);
+                }
+                break;
+            case 'amount': {
+                const amount = Number(value);
+                if (!value.trim()) {
+                    addError(name, 'Amount is required');
+                } else if (!onlyDigitsRegex.test(value)) {
+                    addError(name, 'Amount can only contain numbers');
+                } else if (amount <= 0) {
+                    addError(name, 'Amount must be greater than 0');
+                } else if (amount >= 10000) {
+                    addError(name, 'Amount must be less than 10,000');
+                } else {
+                    removeError(name);
+                }
+                break;
+            }
             default:
                 break;
         }
