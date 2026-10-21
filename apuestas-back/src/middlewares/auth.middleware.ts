@@ -8,9 +8,14 @@ import {
 } from '../utils/constants';
 import { JwtAdapter } from '../config/JwtAdapter';
 import { handleError } from '../utils/handleError';
+import { AuthRequest } from '../types/AuthTypes';
 
 export class AuthMiddleware {
-    static async validateJWT(req: Request, res: Response, next: NextFunction) {
+    static async validateJWT(
+        req: AuthRequest,
+        res: Response,
+        next: NextFunction,
+    ) {
         const authorization = req.header('Authorization');
         if (!authorization) {
             const error = CustomError.unauthorized(MISSING_TOKEN);
@@ -24,7 +29,7 @@ export class AuthMiddleware {
             return;
         }
 
-        const token = authorization.split(' ').at(1) || '';
+        const token = authorization.split(' ')[1] || '';
 
         try {
             const payload = await JwtAdapter.validateToken<{

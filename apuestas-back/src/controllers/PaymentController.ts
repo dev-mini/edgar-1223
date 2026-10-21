@@ -4,11 +4,12 @@ import { FORM_ERROR } from '../utils/constants';
 import { handleError } from '../utils/handleError';
 import { validatePaymentData } from '../schemas/payment/paymentSchema';
 import { PaymentService } from '../services/PaymentService';
+import { AuthRequest } from '../types/AuthTypes';
 
 export class PaymentController {
     constructor(public readonly paymentService: PaymentService) {}
 
-    payment = (req: Request, res: Response) => {
+    payment = (req: AuthRequest, res: Response) => {
         const { id: payerId, email: payerEmail } = req.user!;
         const result = validatePaymentData(req.body);
 

@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { User } from './UsersTypes';
 
 export interface RegisterBodyReq {
@@ -20,4 +21,8 @@ export interface LoginBodyResponse {
     statusCode: number;
     user: Omit<User, 'password'>;
     token: string | unknown;
+}
+
+export interface AuthRequest extends Request {
+    user?: { id: string; email: string };
 }
