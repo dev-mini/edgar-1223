@@ -5,6 +5,9 @@ export const buyCredits = async (
     paymentData: iPaymentDataReq,
 ): Promise<iPaymentResponse> => {
     getToken();
-    const { data } = await axiosClient.post('/snailpay/pay', paymentData);
+    const { data } = await axiosClient.post('/snailpay/pay', {
+        ...paymentData,
+        amount: Number(paymentData.amount),
+    });
     return data;
 };
