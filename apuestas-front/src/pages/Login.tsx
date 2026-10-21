@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Spinner } from '@/components/ui/spinner';
 import { useLogin } from '@/hooks/useLogin';
 import { Link } from 'react-router';
 
@@ -89,7 +90,7 @@ const Login = () => {
                     disabled={!isEnableSubmit || loading}
                     onClick={handleSubmitLoginData}
                 >
-                    Login
+                    {loading && <Spinner className="size-6 text-white" />} Login
                 </Button>
             </CardFooter>
         </Card>
